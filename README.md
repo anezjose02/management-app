@@ -1,40 +1,82 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Management App
 
-## Getting Started
+Este proyecto es una aplicación de gestión construida con Next.js,
+Prisma y MySQL. A continuación, se detallan los pasos necesarios para
+configurar y ejecutar el proyecto en tu entorno local.
 
-First, run the development server:
+## Requisitos previos
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js v18 o superior - MySQL v8 o superior
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Instalación
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+1. Clona el repositorio en tu máquina local:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+bash git clone https://github.com/tu-usuario/management-app.git 
+cd management-app Instala las dependencias del proyecto:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Con npm:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+npm install 
 
-## Learn More
+Con Yarn:
 
-To learn more about Next.js, take a look at the following resources:
+yarn install 
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Crea la base de datos en MySQL:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+CREATE DATABASE management_app; 
 
-## Deploy on Vercel
+Ejecuta las migraciones de Prisma para configurar las tablas en la base de datos:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+npx prisma migrate dev --name init 
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Inicia elservidor de desarrollo:
+
+Con npm:
+
+npm run dev 
+
+Con Yarn:
+
+yarn dev 
+
+Accede a la aplicación en tu navegador en
+http://localhost:3000.
+
+Características clave 
+
+1. Internacionalización (i18n) Se implementó la
+internacionalización utilizando next-i18next y react-i18next para
+manejar múltiples idiomas dentro de la aplicación. Esto se realizo 
+a modo de prueba no quedo en la app final.
+
+2. Autenticación con NextAuth El proyecto utiliza next-auth para
+gestionar la autenticación de usuarios. Esta librería facilita la
+implementación de autenticación segura con soporte para OAuth, JWT, y
+proveedores de identidad social.
+
+3. ORM con Prisma Prisma se usó como el ORM para interactuar con la
+base de datos MySQL. Esto permite definir modelos de datos y manejar
+migraciones de forma sencilla y eficiente. Las consultas a la base de
+datos se realizan utilizando el cliente Prisma (@prisma/client).
+
+4. Diseño responsivo Se utilizó TailwindCSS y Bootstrap para el diseño
+de la interfaz de usuario, asegurando que la aplicación sea
+completamente responsiva y accesible en dispositivos de distintos
+tamaños.
+
+5. Generación de documentos y gráficos Gráficos: chart.js y
+react-chartjs-2 se emplearon para la generación de gráficos
+interactivos. Documentos: html2canvas y jspdf se integraron para
+permitir la generación de documentos PDF a partir de vistas HTML.
+Desafíos y aprendizajes Durante el desarrollo, enfrenté desafíos
+principalmente con:
+
+Internacionalización: Fue la primera vez que implementé la
+internacionalización, pero logré configurarla correctamente y probarla.
+
+Next.js 14 y Prisma: Esta fue mi primera experiencia utilizando Next.js
+en su versión 14, así como Prisma y sus librerías. Aunque no completé la
+integración de correos transaccionales, la experiencia me permitió
+aprender mucho sobre estas tecnologías.
